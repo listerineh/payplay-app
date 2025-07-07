@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/auth-context'
 import { Skeleton } from '@/components/ui/skeleton'
-import { PlusCircle, Users, Split } from 'lucide-react'
+import { PlusCircle, Users } from 'lucide-react'
 import { AppNavbar } from '@/components/app-sidebar'
 import { AddTransactionDialog } from '@/components/add-transaction-dialog'
 import { CreateSavingRoomDialog } from '@/components/create-saving-room-dialog'
@@ -23,6 +23,52 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'PayPlan App',
+  description: 'Manage your finances and savings with this free-to-use app.',
+  keywords: ['Pay', 'Plan', 'Saving', 'Budget', 'Expense', 'Finance', 'Budgeting', 'Saving'],
+  generator: "Next.js",
+  manifest: '/manifest.json',
+  referrer: "origin",
+  publisher: "Vercel",
+  authors: [
+    {
+      name: 'Listerineh',
+      url: 'https://listerineh.dev',
+    },
+  ],
+  openGraph: {
+    title: 'PayPlan App',
+    description: 'Manage your finances and savings with this free-to-use app.',
+    url: 'https://payplan-app.vercel.app',
+    siteName: 'PayPlan App',
+    images: [
+      {
+        url: '/images/website_screenshot.webp',
+        width: 1200,
+        height: 620,
+        alt: 'PayPlan App Preview',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    title: 'PayPlan App',
+    description: 'Manage your finances and savings with this free-to-use app.',
+    images: [
+      {
+        url: '/images/website_screenshot.webp',
+        width: 1200,
+        height: 620,
+        alt: 'PayPlan App Preview',
+      },
+    ],
+    card: 'summary_large_image',
+  },
+};
 
 export default function AppLayout({
   children,
@@ -35,7 +81,6 @@ export default function AppLayout({
   const { t } = useI18n();
   const [isAddTransactionOpen, setIsAddTransactionOpen] = React.useState(false);
   const [isCreateSavingRoomOpen, setIsCreateSavingRoomOpen] = React.useState(false);
-  const [isCreateSharedExpenseOpen, setIsCreateSharedExpenseOpen] = React.useState(false);
   const [isFabMenuOpen, setIsFabMenuOpen] = React.useState(false);
   
   React.useEffect(() => {
@@ -63,13 +108,6 @@ export default function AppLayout({
         toast({ title: t('common.error'), description: "Could not add transaction.", variant: "destructive" });
     }
   }
-  
-  const handleAddSharedExpense = async () => {
-    toast({
-        title: t('shared_expenses.created_toast_title'),
-        description: t('shared_expenses.created_toast_desc'),
-    })
-  };
 
   const handleAddSavingRoom = async (newRoom: SavingRoom) => {
     toast({
