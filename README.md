@@ -1,4 +1,4 @@
-# 🚀 PlayPLan App
+# 🚀 PayPLan App
 
 ✨ Manage your finances with this free-to-use FinPlan App. Create, edit, and delete transactions, as well as add, move, and delete tasks.
 ---
